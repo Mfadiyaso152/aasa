@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const CATEGORIES = [
   { id: 'morning', label: 'أذكار الصباح' },
@@ -72,50 +73,84 @@ const DUAS: Record<string, string[]> = {
 
 const Supplications: React.FC = () => {
   const [activeCat, setActiveCat] = useState('general');
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+  const handleCopy = (text: string, index: number) => {
+    navigator.clipboard.writeText(text);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
-      <div className="text-center mb-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-16"
+      >
         <h2 className="text-4xl md:text-6xl font-bold font-reem text-white mb-4">الأذكار والأدعية</h2>
         <p className="text-slate-400">موسوعة الأدعية الصحيحة والأذكار التي لا غنى عنها للمسلم</p>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="flex flex-wrap justify-center gap-3 mb-12"
+      >
         {CATEGORIES.map(cat => (
           <button
             key={cat.id}
             onClick={() => setActiveCat(cat.id)}
             className={`px-6 py-3 rounded-2xl transition-all border ${
               activeCat === cat.id 
-                ? 'bg-white text-slate-950 font-bold border-white shadow-xl shadow-white/10' 
+                ? 'bg-white text-slate-950 font-bold border-white shadow-xl shadow-white/10 scale-105' 
                 : 'bg-slate-900/50 text-slate-400 border-white/5 hover:border-white/20'
             }`}
           >
             <span className="font-bold">{cat.label}</span>
           </button>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {DUAS[activeCat].map((dua, i) => (
-          <div key={i} className="bg-slate-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-white/20 transition-all group flex flex-col justify-center text-center shadow-lg">
-            <p className="text-xl md:text-2xl font-amiri text-slate-100 leading-relaxed min-h-[100px] flex items-center justify-center">
-              "{dua}"
-            </p>
-            <div className="mt-6 flex justify-center">
-               <button 
-                  onClick={() => {
-                    navigator.clipboard.writeText(dua);
-                    alert('تم النسخ');
-                  }}
-                  className="px-5 py-2 rounded-full border border-white/10 text-xs text-slate-400 hover:text-white hover:border-white/30 transition-all font-medium"
-               >
-                 نسخ النص
-               </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={activeCat}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {DUAS[activeCat].map((dua, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="bg-slate-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-white/20 transition-all group flex flex-col justify-between text-center shadow-lg"
+            >
+              <p className="text-xl md:text-2xl font-amiri text-slate-100 leading-relaxed min-h-[100px] flex items-center justify-center">
+                "{dua}"
+              </p>
+              <div className="mt-6 flex justify-center">
+                 <button 
+                    onClick={() => handleCopy(dua, i)}
+                    className={`px-5 py-2 rounded-full border text-xs font-medium transition-all ${
+                      copiedIndex === i
+                        ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                        : 'border-white/10 text-slate-400 hover:text-white hover:border-white/30'
+                    }`}
+                 >
+                   {copiedIndex === i ? 'تم النسخ!' : 'نسخ النص'}
+                 </button>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };
