@@ -1,7 +1,10 @@
 {
-  "name": "صدقة جارية",
-  "description": "منصة إسلامية شاملة (قرآن، أذكار، مواقيت صلاة) - صدقة جارية نسألكم الدعاء للمتوفين ولجميع المسلمين.",
+  "name": "صدقة",
+  "description": "صدقه عن عبدالله زكريا",
   "requestFramePermissions": [
     "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]
 }

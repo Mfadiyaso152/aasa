@@ -1,13 +1,12 @@
-
 import React, { useState } from 'react';
 
 const CATEGORIES = [
-  { id: 'morning', label: 'أذكار الصباح', icon: '☀️' },
-  { id: 'evening', label: 'أذكار المساء', icon: '🌙' },
-  { id: 'general', label: 'أدعية عامة', icon: '🤲' },
-  { id: 'prophetic', label: 'أدعية نبوية', icon: '📖' },
-  { id: 'sleep', label: 'أذكار النوم', icon: '😴' },
-  { id: 'relief', label: 'أدعية تفريج الهم', icon: '🌈' }
+  { id: 'morning', label: 'أذكار الصباح' },
+  { id: 'evening', label: 'أذكار المساء' },
+  { id: 'general', label: 'أدعية عامة' },
+  { id: 'prophetic', label: 'أدعية نبوية' },
+  { id: 'sleep', label: 'أذكار النوم' },
+  { id: 'relief', label: 'أدعية تفريج الهم' }
 ];
 
 const DUAS: Record<string, string[]> = {
@@ -77,7 +76,7 @@ const Supplications: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-6xl font-bold font-reem gold-gradient mb-4">حصن المسلم</h2>
+        <h2 className="text-4xl md:text-6xl font-bold font-reem text-white mb-4">الأذكار والأدعية</h2>
         <p className="text-slate-400">موسوعة الأدعية الصحيحة والأذكار التي لا غنى عنها للمسلم</p>
       </div>
 
@@ -86,13 +85,12 @@ const Supplications: React.FC = () => {
           <button
             key={cat.id}
             onClick={() => setActiveCat(cat.id)}
-            className={`px-6 py-3 rounded-2xl flex items-center gap-2 transition-all border ${
+            className={`px-6 py-3 rounded-2xl transition-all border ${
               activeCat === cat.id 
-                ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-xl shadow-amber-500/20' 
-                : 'bg-slate-900/50 text-slate-400 border-white/5 hover:border-amber-500/30'
+                ? 'bg-white text-slate-950 font-bold border-white shadow-xl shadow-white/10' 
+                : 'bg-slate-900/50 text-slate-400 border-white/5 hover:border-white/20'
             }`}
           >
-            <span className="text-lg">{cat.icon}</span>
             <span className="font-bold">{cat.label}</span>
           </button>
         ))}
@@ -100,7 +98,7 @@ const Supplications: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {DUAS[activeCat].map((dua, i) => (
-          <div key={i} className="bg-slate-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-amber-500/20 transition-all group flex flex-col justify-center text-center shadow-lg">
+          <div key={i} className="bg-slate-900/40 p-8 rounded-[2rem] border border-white/5 hover:border-white/20 transition-all group flex flex-col justify-center text-center shadow-lg">
             <p className="text-xl md:text-2xl font-amiri text-slate-100 leading-relaxed min-h-[100px] flex items-center justify-center">
               "{dua}"
             </p>
@@ -110,9 +108,9 @@ const Supplications: React.FC = () => {
                     navigator.clipboard.writeText(dua);
                     alert('تم النسخ');
                   }}
-                  className="px-4 py-2 rounded-full border border-white/10 text-[10px] text-slate-500 hover:text-amber-400 hover:border-amber-400/30 transition-all flex items-center gap-2"
+                  className="px-5 py-2 rounded-full border border-white/10 text-xs text-slate-400 hover:text-white hover:border-white/30 transition-all font-medium"
                >
-                 <span>📋</span> نسخ النص
+                 نسخ النص
                </button>
             </div>
           </div>

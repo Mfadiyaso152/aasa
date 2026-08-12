@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 interface Timings {
@@ -29,9 +28,7 @@ const PrayerTimes: React.FC = () => {
     let h = parseInt(hours, 10);
     const ampm = h >= 12 ? 'م' : 'ص';
     h = h % 12 || 12;
-    // Using Arabic numerals for consistency with the design
     const arabicH = h.toLocaleString('ar-SA');
-    // Fix: Convert minutes string to number before calling toLocaleString with options (string.toLocaleString expects 0 arguments)
     const m = parseInt(minutes, 10);
     const arabicM = m.toLocaleString('ar-SA', { minimumIntegerDigits: 2, useGrouping: false });
     return `${arabicH}:${arabicM} ${ampm}`;
@@ -80,13 +77,13 @@ const PrayerTimes: React.FC = () => {
       <div className="flex justify-between items-end mb-10">
         <div>
           <h2 className="text-3xl font-bold font-reem text-white mb-2">مواقيت الصلاة</h2>
-          <p className="text-amber-500/80 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+          <p className="text-slate-300 text-sm flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
             {location}
           </p>
         </div>
         <div className="text-right">
-          <p className="text-slate-400 text-sm uppercase tracking-widest">التاريخ الهجري اليوم</p>
+          <p className="text-slate-400 text-xs uppercase tracking-widest">التاريخ الهجري اليوم</p>
           <p className="text-slate-100 font-bold">
             {hijri ? `${hijri.day} ${hijri.month.ar} ${hijri.year} هـ` : 'جاري التحميل...'}
           </p>
@@ -95,8 +92,8 @@ const PrayerTimes: React.FC = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {timings && Object.entries(prayerLabels).map(([key, label]) => (
-          <div key={key} className="bg-slate-900/40 border border-white/5 p-6 rounded-[2rem] text-center hover:border-amber-500/30 transition-all hover:bg-slate-900/60 group shadow-lg">
-            <p className="text-slate-400 text-sm mb-3 group-hover:text-amber-400 transition-colors">{label}</p>
+          <div key={key} className="bg-slate-900/40 border border-white/5 p-6 rounded-[2rem] text-center hover:border-white/20 transition-all hover:bg-slate-900/60 group shadow-lg">
+            <p className="text-slate-400 text-sm mb-3 group-hover:text-white transition-colors">{label}</p>
             <p className="text-xl md:text-2xl font-bold text-white font-reem whitespace-nowrap">
               {formatTime12h(timings[key as keyof Timings])}
             </p>

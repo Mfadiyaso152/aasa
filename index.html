@@ -1,53 +1,60 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>صدقة جارية | المصحف والأذكار</title>
-    <meta name="description" content="منصة إسلامية متكاملة تشمل القرآن الكريم والأذكار ومواقيت الصلاة - صدقة جارية." />
+    <title>صدقة</title>
+    <meta name="description" content="صدقه عن عبدالله زكريا" />
+    
+    <!-- تحميل Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Kufi+Arabic:wght@100..900&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+      /* إخفاء شريط التمرير كلياً من المتصفح وكافة المكونات */
+      html, body, *, ::-webkit-scrollbar {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+      ::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+
       body {
         font-family: 'Noto Kufi Arabic', sans-serif;
         background-color: #020617;
         color: #f8fafc;
+        margin: 0;
+        padding: 0;
         overflow-x: hidden;
         scroll-behavior: smooth;
       }
       .font-amiri { font-family: 'Amiri', serif; }
       .font-reem { font-family: 'Reem Kufi', sans-serif; }
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
-      }
-      .animate-float { animation: float 5s ease-in-out infinite; }
       .gold-gradient {
-        background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background: none !important;
       }
       .islamic-pattern {
         background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
         opacity: 0.05;
       }
-      .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-      .custom-scrollbar::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
-    </style>
-    <script type="importmap">
-    {
-      "imports": {
-        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-        "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
-        "react/": "https://esm.sh/react@^19.2.4/",
-        "react": "https://esm.sh/react@^19.2.4"
+      #root:empty::before {
+        content: "جاري تشغيل النظام... يرجى الانتظار ثواني قليلة";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #ffffff;
+        font-size: 1.2rem;
       }
-    }
-    </script>
+    </style>
   </head>
   <body>
     <div id="root"></div>

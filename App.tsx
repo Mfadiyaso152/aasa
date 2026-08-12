@@ -1,13 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import PrayerTimes from './components/PrayerTimes';
-import QuranViewer from './components/QuranViewer';
-import HadithSection from './components/HadithSection';
-import Supplications from './components/Supplications';
-import Footer from './components/Footer';
-import Starfield from './components/Starfield';
+import Header from './components/Header.tsx';
+import Hero from './components/Hero.tsx';
+import PrayerTimes from './components/PrayerTimes.tsx';
+import QuranViewer from './components/QuranViewer.tsx';
+import HadithSection from './components/HadithSection.tsx';
+import Supplications from './components/Supplications.tsx';
+import Footer from './components/Footer.tsx';
+import Starfield from './components/Starfield.tsx';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -43,7 +42,7 @@ const App: React.FC = () => {
       <div className="absolute inset-0 islamic-pattern pointer-events-none"></div>
       <div className="relative z-10 flex flex-col min-h-screen">
         <Header activeTab={activeTab} setActiveTab={setActiveTab} />
-        <main className="flex-grow pt-20 pb-20 lg:pb-0">
+        <main className="flex-grow pt-20 pb-12">
           {renderContent()}
         </main>
         <Footer />

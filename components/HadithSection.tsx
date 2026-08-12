@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const HADITHS = [
@@ -63,11 +62,6 @@ const HADITHS = [
     source: "صحيح مسلم"
   },
   {
-    text: "اجتنبوا السبع الموبقات..",
-    narrator: "أبو هريرة",
-    source: "متفق عليه"
-  },
-  {
     text: "بني الإسلام على خمس: شهادة أن لا إله إلا الله وأن محمداً رسول الله، وإقام الصلاة، وإيتاء الزكاة، والحج، وصوم رمضان.",
     narrator: "ابن عمر",
     source: "متفق عليه"
@@ -82,23 +76,23 @@ const HADITHS = [
 const HadithSection: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
-       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-6xl font-bold font-reem gold-gradient mb-4">الأحاديث النبوية</h2>
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-6xl font-bold font-reem text-white mb-4">الأحاديث النبوية</h2>
         <p className="text-slate-400">أنوار من كلام سيد المرسلين صلى الله عليه وسلم</p>
       </div>
 
       <div className="grid grid-cols-1 gap-8">
         {HADITHS.map((hadith, i) => (
-          <div key={i} className="relative bg-slate-900/30 border border-white/5 p-8 md:p-12 rounded-[3rem] group hover:bg-slate-900/60 transition-all overflow-hidden shadow-xl">
+          <div key={i} className="relative bg-slate-900/40 border border-white/5 p-8 md:p-12 rounded-[2.5rem] group hover:bg-slate-900/70 transition-all overflow-hidden shadow-xl">
             <div className="absolute top-0 right-0 p-8 text-9xl text-white/5 font-serif select-none pointer-events-none">"</div>
             <div className="relative z-10 flex flex-col items-center text-center">
               <p className="text-2xl md:text-3xl font-amiri text-slate-100 leading-relaxed mb-8 max-w-5xl">
                 {hadith.text}
               </p>
               <div className="flex flex-col items-center">
-                <div className="h-px w-24 bg-amber-500/30 mb-4"></div>
-                <p className="text-amber-500 font-bold mb-1">رواه {hadith.narrator}</p>
-                <p className="text-slate-500 text-[10px] uppercase tracking-widest">{hadith.source}</p>
+                <div className="h-px w-24 bg-white/20 mb-4"></div>
+                <p className="text-white font-bold mb-1">رواه {hadith.narrator}</p>
+                <p className="text-slate-400 text-xs font-sans">{hadith.source}</p>
               </div>
             </div>
           </div>
